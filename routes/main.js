@@ -8,7 +8,12 @@ module.exports = function(app, forumData) {
     // Topics page - List all topics
     app.get('/topics', function(req, res) {
         // Add your logic to retrieve and display all topics
-        res.render('topics.ejs', forumData);
+        let sql = 'SELECT * FROM topics';
+        db.query(sql, function(err, result) {
+            if (err) throw err;
+            let topicsData = Object.assign({}, forumData ,{allTopics: result});
+            res.render('topics.ejs', topicsData);
+        })
     });
 
     // Users page - List all users
