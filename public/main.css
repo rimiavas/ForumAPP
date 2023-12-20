@@ -1,40 +1,291 @@
-
-
-/* Center align text */
-/* Make heading bigger */
-h1 {
-    font-size: 50px;
-    text-align: center; 
+/* General page defaults */
+body {
+    background-color: #e4e4ca; 
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+
+
+/* TYPOGRAPHY 
+============== */
+
+/* Headers, paragraphs, lists */
+.page-title {
+    font-size: 30px;
     text-align: center;
-    font-size: 20px;
+}
+
+.page-title p {
+    color: rgb(201, 153, 108);
+    display: inline;
+}
+
+.standard-text {
+    font-size: 18px;
+    line-height: 1.5; 
 }
 
 li {
     display: inline;  
-    padding: 10px;
+    padding: 15px;
 }
 
-a {
+/* COMPONENTS
+============= */  
+/* Logo */
+.page-logo {
+    font-size: 50px;
+    text-align: center;
+    margin-block-end: 1px;
+}
+
+/* crack it "!" to make the color gold*/
+.page-logo p {
+    color: rgb(201, 153, 108);
+    display: inline;
+}
+
+/*part of the logo to style what it says below crack it*/
+.page-logo h2 {
+    font-size: 15px;
+    text-align: center;
+    color: rgb(187, 160, 135);
+    margin-block-end: 40px;
+}
+
+.page-logo a {
     color: #333;
     text-decoration: none; 
 }
 
-/* Text color on hover */
-a:hover {
-    color: #000; 
+
+/* Navigation */
+nav {
+    background-color: rgb(226, 216, 194);
+    text-align: center;
 }
 
-/* Background color on hover */  
-a:hover {
-    background-color: #eee; 
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    font-size: 25px;  
 }
 
-/* Set cream background */
-body {
-    background-color: #e4e4ca; 
+nav li {
+    display: inline;  
+    padding: 15px;
+}
+
+nav a {
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.8s; /* Add transition */
+}
+
+nav a:hover {
+    opacity: 1; /* Restore full opacity on hover */
+    background-color: rgb(238, 238, 238); 
+    color: #000000; 
+    opacity: 0.7; /* Links slightly transparent by default */ 
+}
+
+/* Buttons */
+.addpost-form button {
+    background-color: rgb(238, 203, 128);
+    color: #000000;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Hover effect for the submit button */
+.addpost-form button:hover {
+    background-color: #f1e0a0;
+}
+
+.search-post-form input[type="submit"] {
+    background-color: rgb(238, 203, 128);
+    color: #000000;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Hover effect for the submit button */
+.search-post-form input[type="submit"]:hover {
+    background-color: #f1e0a0;
+}
+
+
+/* Form elements */
+.addpost-form label{
+    display: block; 
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.addpost-form input, 
+.addpost-form textarea, .addpost-form select{
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.search-container p {
+    display: block; 
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.search-post-form input {
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+
+
+/* Cards */
+
+/*gold box to style the topic name box div 2*/
+.topic-label-box {
+    display:block;
+    background-color: rgb(238, 203, 128);
+    font-size: 15px;
+    margin-top: 8px;
+    text-align: left;
+    width: fit-content;
+    padding: 8px;
+}
+
+.yellow-box {
+    display:inline-block;
+    background-color: rgb(238, 203, 128);
+    font-size: 15px;
+    margin-top: 8px;
+    text-align: center;
+    padding: 8px;
+}
+
+.yellow-box ul {
+    padding-inline-start: 8px;
+}
+
+/*outer box to hold contents such as titles div 1*/
+.outer-box {
+    background-color: rgb(226, 216, 194);
+    display: block;
+    font-size: 23px;
+    padding: 15px;
+}
+
+
+/*div3*/
+.main-content {
+    display: block;
+    font-size: 20px;
+    background-color: rgb(255, 255, 255);
+    padding: 8px;
+}
+
+.outer-box, .main-content, .topic-label-box, .yellow-box {
+    opacity: 0.9;
+    color: #000000;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+
+/* LAYOUT
+======== */ 
+
+/* Footer */
+footer {
+    background-color: var(--main-color);
+    color: #000000;
+    text-align: end;
+    padding: 10px; 
+}
+
+footer p {
+    margin: 0;  
+}
+
+/* Section containers */
+
+.topics-container, .users-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center; /* Center the content horizontally */
+}
+
+.topics-container ul {
+    list-style: none;
+    padding: 45px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.topics-container li {
+    display: inline;  
+    padding: 15px;
+}
+
+.users-container ul {
+    list-style-type: none;
+    padding: 0px;
+}
+
+.posts-container {
+    max-width: 800px;
+    margin: 0px auto;
+    text-align: left; /* Center the content horizontally */
+}
+
+.posts-container h1 {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.posts-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.posts-container p1 {
+    font-size: 20px;
+    font-style: italic;
+}
+
+/* Style for the form container */
+.addpost-container, .search-container {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center; /* Center the content horizontally */
+    padding: 20px;
 }

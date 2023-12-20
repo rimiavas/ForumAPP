@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List Of All Posts</title>
+    <link rel="stylesheet"  type="text/css" href="/main.css" />
+</head>
+
+<body>
+
+    <h1 class="page-logo">
+        <a href= "/"><%=forumName%>
+            <p>!</p>
+            <h2>Forum website</h2>
+        </a>
+    </h1>
+
+    <h2 class="page-title"> All <%=forumName%> <p>!</p> Posts </h2>
+    
+    <main>
+        <div class="posts-container">
+            <% for (let i = 0; i < allPosts.length; i++) { %>
+                <!-- Display list of all user's name and description -->
+                <div class="topic-label-box"><%= allPosts[i].topic%></div>
+                <div class="outer-box">
+                    <h1><%= allPosts[i].title%> </h1>
+                    <p1>by
+                    <%= allPosts[i].creator%> </p1> <br><br>
+                    <div class="main-content"><%= allPosts[i].content%></div>
+                </div>
+        <% } %>
+    </div>
+    </main>
+</body>
+
+</html>

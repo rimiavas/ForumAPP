@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>List Of All Topics</title>
+        <link rel="stylesheet"  type="text/css" href="/main.css" />
+    </head>
+
+    <body>
+        <h1 class="page-logo">
+            <a href= "/"><%=forumName%>
+                <p>!</p>
+                <h2>Forum website</h2>
+            </a>
+        </h1>
+
+    <h2 class="page-title"> All <%=forumName%> <p>!</p> Topics</h2>
+    
+    <main>
+        <div class="topics-container">
+            <ul>
+                <% for (let i = 0; i < allTopics.length; i++) { %>
+                <!-- Display list of all topics name and description -->
+                    <div class="topic-label-box">
+                        <li><%= allTopics[i].name%></li>
+                    </div>
+                    <div class="outer-box">
+                        <br>
+                        <li><%= allTopics[i].description%></li> 
+                        <br><br>
+                        <div class="main-content">
+                            <li><strong>Topic ID: <%= allTopics[i].id%></strong></li>
+                        </div>
+                    </div>
+                <% } %>
+            </ul>
+        </div>
+    </main>
+</body>
+
+</html>

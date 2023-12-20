@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List Of All Posts</title>
+    <link rel="stylesheet"  type="text/css" href="/main.css" />
+</head>
+
+<body>
+
+    <h1 class="page-logo">
+        <a href= "/"><%=forumName%>
+            <p>!</p>
+            <h2>Forum website</h2>
+        </a>
+    </h1>
+
+    <h2 class="page-title"> Add a New post to <%=forumName%> <p>!</p></h2>
+    <main>
+    <div class="addpost-container">
+        <form class="addpost-form" action="/addPost" method="post">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+            
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" rows="4" required></textarea>
+            
+            <!-- Dropdown list for userId -->
+            <label for="userId">User ID:</label>
+            <select id="userId" name="userId" required>
+                <% for (let i = 0; i < allUsers.length; i++) { %>
+                    <option value="<%= allUsers[i].id %>"><%= allUsers[i].id %></option>
+                <% } %>
+            </select>
+            
+            <!-- Dropdown list for topicId -->
+            <label for="topicId">Topic ID:</label>
+            <select id="topicId" name="topicId" required>
+                <% for (let i = 0; i < allTopics.length; i++) { %>
+                    <option value="<%= allTopics[i].id %>"><%= allTopics[i].id %></option>
+                <% } %>
+            </select>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    </main>
+</body>
+
+</html>

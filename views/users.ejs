@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List Of All Users</title>
+    <link rel="stylesheet"  type="text/css" href="/main.css" />
+</head>
+
+<body>
+
+    <h1 class="page-logo">
+        <a href= "/"><%=forumName%>
+            <p>!</p>
+            <h2>Forum website</h2>
+        </a>
+    </h1>
+
+    <h2 class="page-title"> All <%=forumName%> <p>!</p> Users </h2>
+
+    <main>
+        <div class="users-container">
+            <ul>
+                <% for (let i = 0; i < allUsers.length; i++) { %>
+                    <!-- Display list of all user's name and description -->
+                    <div class="outer-box">
+                        <li><%= allUsers[i].name%></li> <br> <br>
+                        <div class="main-content"><strong><li>User ID: <%= allUsers[i].id%></li></strong></div>
+                    </div>
+                <% } %>
+            </ul>
+        </div>
+    </main>
+</body>
+
+</html>
