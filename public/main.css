@@ -181,6 +181,25 @@ nav a:hover {
     box-sizing: border-box;
 }
 
+.addpost-container p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.addpost-container a {
+    display: block;
+    text-decoration: none;
+    color: #000000;
+    background-color: rgb(238, 203, 128);
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.addpost-container a:hover {
+    background-color: #f1e0a0;
+}
+
 
 
 /* Cards */

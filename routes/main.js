@@ -52,6 +52,11 @@ module.exports = function(app, forumData) {
         })
     });
 
+    
+    app.get('/notamember', function(req, res) {
+        res.render('notamember.ejs' ,forumData);
+    });
+
     // Add post page - Form to create new post
     app.get('/addpost', function(req, res) {
         // Add your logic to retrieve data for dropdown lists
@@ -73,23 +78,34 @@ module.exports = function(app, forumData) {
         });
     });
 
-    // Handle the form submission (POST request) to create a new post
+    //handle the form submission (post request) to create a new post, check if user member of topic before post
     app.post('/addpost', function(req, res) {
-        // Extract data from the form submission
-        const { title, content, userId, topicId } = req.body;
 
-        // Add your logic to insert the new post into the database
-        let sql = 'INSERT INTO posts (title, content, user_id, topic_id) VALUES (?, ?, ?, ?)';
-
-        // Execute the SQL query to insert the new post
-        db.query(sql, [title, content, userId, topicId], function(err, result) {
-            if (err) throw err;
-
-           // Redirect to the posts page or show a confirmation message
-            res.redirect('/posts');
+        const {userId, topicId} = req.body;
+        // Add your logic to create a new post
+        let sql = 'SELECT * FROM user_topics WHERE user_id = ? AND topic_id = ?';
+        db.query(sql, [userId, topicId], function(err, result) {
+            if (err) {
+                throw err
+            } else if (result.length > 0) {
+                // Extract data from the form submission
+                const { title, content, userId, topicId } = req.body;
+                // Add your logic to create a new post
+                let sql = 'INSERT INTO posts (title, content, user_id, topic_id) VALUES (?, ?, ?, ?)';
+                db.query(sql, [title, content, userId, topicId], function(err, result) {
+                    if (err) {
+                        throw err
+                    } else {
+                        // Redirect to the home page after successful post creation
+                        res.redirect('/');
+                    }
+                });
+            } else {
+                // The user is not a member of the topic, prevent post creation
+                res.redirect('notamember');
+            }
         });
     });
-
 
 
     // Search page - Search posts on title/content
