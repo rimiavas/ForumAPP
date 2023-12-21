@@ -23,7 +23,7 @@
                 <div class="topic-label-box"><%= posts[i].topic%></div>
                 <div class="outer-box">
                     <h1><%= posts[i].title%> </h1>
-                    <p1>by <%= posts[i].creator%> </p1> <br><br>
+                    <p1>by <%= posts[i].creator%> at <%= posts[i].created_at%> </p1> <br><br>
                     <div class="main-content"><%= posts[i].content%></div>
                 </div>
             <% } %>

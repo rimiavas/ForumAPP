@@ -40,12 +40,16 @@
         <main>
             <div class="latest-post-container">
                 <% for (let i = 0; i < latestPosts.length; i++) { %>
-                    <!-- Display list of all user's name and description -->
+                    <!-- Display list of all latest posts and description -->
                     <div class="topic-label-box"><%= latestPosts[i].topic%></div>
                     <div class="outer-box">
                         <h1><%= latestPosts[i].title%> </h1>
-                        <p1>by <%= latestPosts[i].creator%> </p1> <br><br>
+                        <p1>by <%= latestPosts[i].creator%> at <%= latestPosts[i].created_at%></p1> <br><br>
                         <div class="main-content"><%= latestPosts[i].content%></div>
+                        <form class="delete-btn"action="/delete-post" method="post">
+                            <input type="hidden" name="postId" value="<%= latestPosts[i].id %>">
+                            <button type="submit">Delete</button>
+                        </form>
                     </div>
                 <% } %>
             </div>

@@ -28,7 +28,7 @@
             <label for="userId">User ID:</label>
             <select id="userId" name="userId" required>
                 <% for (let i = 0; i < allUsers.length; i++) { %>
-                    <option value="<%= allUsers[i].id %>"><%= allUsers[i].id %></option>
+                    <option value="<%= allUsers[i].id %>"><%= allUsers[i].id %>. <%= allUsers[i].name %></option>
                 <% } %>
             </select>
             
@@ -36,7 +36,7 @@
             <label for="topicId">Topic ID:</label>
             <select id="topicId" name="topicId" required>
                 <% for (let i = 0; i < allTopics.length; i++) { %>
-                    <option value="<%= allTopics[i].id %>"><%= allTopics[i].id %></option>
+                    <option value="<%= allTopics[i].id %>"><%= allTopics[i].id %>. <%=allTopics[i].name%></option>
                 <% } %>
             </select>
             

@@ -2,11 +2,11 @@ module.exports = function(app, forumData) {
     // Home page - List latest posts
     app.get('/', function(req, res) {
         // Add your logic to retrieve and display the latest posts
-        let sql = 'SELECT posts.title, posts.content, users.name AS creator, topics.name AS topic ' + 
+        let sql = 'SELECT posts.title, posts.content, posts.created_at, users.name AS creator, topics.name AS topic ' + 
         'FROM posts ' + 
         'INNER JOIN users ON posts.user_id = users.id ' + 
         'INNER JOIN topics ON posts.topic_id = topics.id ' +
-        'ORDER BY created_at DESC LIMIT 5';    
+        'ORDER BY created_at DESC LIMIT 15';    
         
         db.query(sql, function(err, result) {
             if (err) throw err;
@@ -40,7 +40,7 @@ module.exports = function(app, forumData) {
     // Posts page - List all posts
     app.get('/posts', function(req, res) {
         // Add your logic to retrieve and display all posts
-        let sql = 'SELECT posts.title, posts.content, users.name AS creator, topics.name AS topic ' + 
+        let sql = 'SELECT posts.id, posts.title, posts.content, posts.created_at, users.name AS creator, topics.name AS topic ' + 
         'FROM posts ' + 
         'INNER JOIN users ON posts.user_id = users.id ' + 
         'INNER JOIN topics ON posts.topic_id = topics.id';
@@ -50,6 +50,23 @@ module.exports = function(app, forumData) {
             let postsData = Object.assign({}, forumData ,{allPosts: result});
             res.render('posts.ejs', postsData);
         })
+    });
+
+    // Handle the request to delete a post
+    app.post('/delete-post', function(req, res) {
+        const postIdToDelete = req.body.postId; // Assuming the post ID is sent in the request body
+
+        // Add your logic to delete the post from the database
+        let sql= 'DELETE FROM posts WHERE id = ?';
+        db.query(sql, [postIdToDelete], function(err, result) {
+            if (err) {
+                throw err;
+            } else {
+                // Post deleted successfully
+                // Redirect to the home page after successful post deletion.
+                res.redirect('/');
+            }
+        });
     });
 
     
@@ -91,7 +108,7 @@ module.exports = function(app, forumData) {
                 // Extract data from the form submission
                 const { title, content, userId, topicId } = req.body;
                 // Add your logic to create a new post
-                let sql = 'INSERT INTO posts (title, content, user_id, topic_id) VALUES (?, ?, ?, ?)';
+                let sql = 'INSERT INTO posts (title, content, created_at, user_id, topic_id) VALUES (?, ?, ?, ?)';
                 db.query(sql, [title, content, userId, topicId], function(err, result) {
                     if (err) {
                         throw err
@@ -116,7 +133,7 @@ module.exports = function(app, forumData) {
 
     app.get ('/search-results', function (req, res) {
         let keyword = req.query.keyword;
-        let sql = 'SELECT posts.title, posts.content, users.name AS creator, topics.name AS topic ' + 
+        let sql = 'SELECT posts.title, posts.content, posts.created_at, users.name AS creator, topics.name AS topic ' + 
         'FROM posts ' + 
         'INNER JOIN users ON posts.user_id = users.id ' + 
         'INNER JOIN topics ON posts.topic_id = topics.id ' +
@@ -137,21 +154,4 @@ module.exports = function(app, forumData) {
         res.render('about.ejs', forumData);
     });
 
-    // User profile page - Details and posts for user
-    app.get('/profile/:userId', function(req, res) {
-        // Add your logic to retrieve and display user profile and posts
-        let userId = req.params.userId;
-        // Render user profile and posts based on the userId
-        res.render('profile.ejs', { ...forumData, userId: userId });
-    });
-
-    // Topic page - Details and posts for topic
-    app.get('/topic/:topicId', function(req, res) {
-        // Add your logic to retrieve and display topic details and posts
-        let topicId = req.params.topicId;
-        // Render topic details and posts based on the topicId
-        res.render('topic.ejs', { ...forumData, topicId: topicId });
-    });
-
-    // Add more routes as per your requirements
 };
