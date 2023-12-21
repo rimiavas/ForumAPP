@@ -1,6 +1,6 @@
 module.exports = function(app, forumData) {
     // Home page - List latest posts
-    app.get('/', function(req, res) {
+    app.get('/home', function(req, res) {
         // Add your logic to retrieve and display the latest posts
         let sql = 'SELECT posts.id, posts.title, posts.content, posts.created_at, users.name AS creator, topics.name AS topic ' + 
         'FROM posts ' + 
