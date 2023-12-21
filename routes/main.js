@@ -117,7 +117,7 @@ module.exports = function(app, forumData) {
                         throw err
                     } else {
                         // Redirect to the home page after successful post creation
-                        res.redirect('/');
+                        res.redirect('home');
                     }
                 });
             } else {
