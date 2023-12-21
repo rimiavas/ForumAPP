@@ -23,7 +23,7 @@
                 <div class="topic-label-box"><%= allPosts[i].topic%></div>
                 <div class="outer-box">
                     <h1><%= allPosts[i].title%> </h1>
-                    <p1>by <%= allPosts[i].creator%>  at <%= allPosts[i].created_at%></pp1> <br><br>
+                    <p1>by <%= allPosts[i].creator%>  at <%= allPosts[i].created_at%></p1> <br><br>
                     <div class="main-content"><%= allPosts[i].content%></div>
                     <form class="delete-btn"action="/delete-post" method="post">
                         <input type="hidden" name="postId" value="<%= allPosts[i].id %>">

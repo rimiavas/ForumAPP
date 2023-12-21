@@ -46,10 +46,10 @@
                         <h1><%= latestPosts[i].title%> </h1>
                         <p1>by <%= latestPosts[i].creator%> at <%= latestPosts[i].created_at%></p1> <br><br>
                         <div class="main-content"><%= latestPosts[i].content%></div>
-                        <form class="delete-btn"action="/delete-post" method="post">
+                        <form class="delete-btn" action="/delete-post" method="post">
                             <input type="hidden" name="postId" value="<%= latestPosts[i].id %>">
                             <button type="submit">Delete</button>
-                        </form>
+                        </form>                        
                     </div>
                 <% } %>
             </div>

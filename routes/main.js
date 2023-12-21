@@ -2,7 +2,7 @@ module.exports = function(app, forumData) {
     // Home page - List latest posts
     app.get('/', function(req, res) {
         // Add your logic to retrieve and display the latest posts
-        let sql = 'SELECT posts.title, posts.content, posts.created_at, users.name AS creator, topics.name AS topic ' + 
+        let sql = 'SELECT posts.id, posts.title, posts.content, posts.created_at, users.name AS creator, topics.name AS topic ' + 
         'FROM posts ' + 
         'INNER JOIN users ON posts.user_id = users.id ' + 
         'INNER JOIN topics ON posts.topic_id = topics.id ' +
@@ -10,7 +10,7 @@ module.exports = function(app, forumData) {
         
         db.query(sql, function(err, result) {
             if (err) throw err;
-            let homeData = Object.assign({}, forumData, { latestPosts: result });
+            let homeData = Object.assign({}, forumData, {latestPosts: result});
             res.render('home.ejs', homeData);
         });
     });
@@ -37,6 +37,10 @@ module.exports = function(app, forumData) {
         })
     });
 
+    app.get('/postdeleted', function(req, res) {
+        res.render('postdeleted.ejs' ,forumData);
+    });
+
     // Posts page - List all posts
     app.get('/posts', function(req, res) {
         // Add your logic to retrieve and display all posts
@@ -44,7 +48,6 @@ module.exports = function(app, forumData) {
         'FROM posts ' + 
         'INNER JOIN users ON posts.user_id = users.id ' + 
         'INNER JOIN topics ON posts.topic_id = topics.id';
-;
         db.query(sql, function(err, result) {
             if (err) throw err;
             let postsData = Object.assign({}, forumData ,{allPosts: result});
@@ -63,8 +66,8 @@ module.exports = function(app, forumData) {
                 throw err;
             } else {
                 // Post deleted successfully
-                // Redirect to the home page after successful post deletion.
-                res.redirect('/');
+                // Redirect to completion after successful post deletion.
+                res.redirect('postdeleted');
             }
         });
     });
@@ -106,10 +109,10 @@ module.exports = function(app, forumData) {
                 throw err
             } else if (result.length > 0) {
                 // Extract data from the form submission
-                const { title, content, userId, topicId } = req.body;
+                const { title, content, created_at, userId, topicId } = req.body;
                 // Add your logic to create a new post
-                let sql = 'INSERT INTO posts (title, content, created_at, user_id, topic_id) VALUES (?, ?, ?, ?)';
-                db.query(sql, [title, content, userId, topicId], function(err, result) {
+                let sql = 'INSERT INTO posts (title, content, created_at, user_id, topic_id) VALUES (?, ?, ?, ?, ?)';
+                db.query(sql, [title, content, created_at, userId, topicId], function(err, result) {
                     if (err) {
                         throw err
                     } else {
