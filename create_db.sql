@@ -1,11 +1,12 @@
-SHOW DATABASES;
+-- SHOW DATABASES; --
 CREATE DATABASE myForum;
-USE myForum;
-SHOW TABLES;
-DESCRIBE users;
-DESCRIBE topics;
-DESCRIBE user_topics;
-DESCRIBE posts;
+USE myForum; --
+-- SHOW TABLES; --
+-- DESCRIBE users; --
+-- DESCRIBE topics; --
+-- DESCRIBE user_topics; --
+-- DESCRIBE posts;--
+
 
 CREATE TABLE users (
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -38,10 +39,10 @@ CREATE TABLE posts (
   FOREIGN KEY(topic_id) REFERENCES topics(id)
 );
 
-SELECT * FROM users;
-SELECT * FROM topics; 
-SELECT * FROM posts;
-SELECT * FROM user_topics;
+-- SELECT * FROM users; --
+-- SELECT * FROM topics; --
+-- SELECT * FROM posts; --
+-- SELECT * FROM user_topics; --
 
 FLUSH PRIVILEGES;
 SHOW GRANTS FOR 'appuser'@'localhost';
