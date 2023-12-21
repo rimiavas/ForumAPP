@@ -23,7 +23,7 @@ main {
     padding: 20px;
 }
 
-.page-title p {
+.page-title span {
     color: rgb(201, 153, 108);
     display: inline;
 
