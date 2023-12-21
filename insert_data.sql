@@ -20,6 +20,8 @@ VALUES
 ("Beginner Python Tips", "What modules should I learn starting out?", 2, 2),
 ("CSS Issue", "Why doesn't my CSS stylesheet link work?", 3, 3);
 
+
+-- assign users to topics so they can post --
 INSERT INTO user_topics (user_id, topic_id) 
 VALUES 
 (3, 2), (1, 1), (2, 2), (3, 3), (4, 3);
