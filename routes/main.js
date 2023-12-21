@@ -2,7 +2,17 @@ module.exports = function(app, forumData) {
     // Home page - List latest posts
     app.get('/', function(req, res) {
         // Add your logic to retrieve and display the latest posts
-        res.render('home.ejs', forumData);
+        let sql = 'SELECT posts.title, posts.content, users.name AS creator, topics.name AS topic ' + 
+        'FROM posts ' + 
+        'INNER JOIN users ON posts.user_id = users.id ' + 
+        'INNER JOIN topics ON posts.topic_id = topics.id ' +
+        'ORDER BY created_at DESC LIMIT 5';    
+        
+        db.query(sql, function(err, result) {
+            if (err) throw err;
+            let homeData = Object.assign({}, forumData, { latestPosts: result });
+            res.render('home.ejs', homeData);
+        });
     });
 
     // Topics page - List all topics
@@ -90,10 +100,14 @@ module.exports = function(app, forumData) {
 
     app.get ('/search-results', function (req, res) {
         let keyword = req.query.keyword;
-        let sql = "SELECT * FROM posts WHERE title LIKE ? OR content LIKE ?";
+        let sql = 'SELECT posts.title, posts.content, users.name AS creator, topics.name AS topic ' + 
+        'FROM posts ' + 
+        'INNER JOIN users ON posts.user_id = users.id ' + 
+        'INNER JOIN topics ON posts.topic_id = topics.id ' +
+        'WHERE posts.title LIKE ? OR posts.content LIKE ? OR users.name LIKE ? OR topics.name LIKE ?';
         let searchTerm = '%' + keyword + '%';
     
-        db.query(sql, [searchTerm, searchTerm], (err, result) => {
+        db.query(sql, [searchTerm, searchTerm, searchTerm, searchTerm], (err, result) => {
             if (err) throw err;
             let searchData = Object.assign({}, forumData, { searchTerm : keyword }, { posts: result });
             res.render("search-results.ejs", searchData);

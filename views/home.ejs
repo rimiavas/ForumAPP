@@ -38,7 +38,17 @@
         </nav>
 
         <main>
-
+            <div class="latest-post-container">
+                <% for (let i = 0; i < latestPosts.length; i++) { %>
+                    <!-- Display list of all user's name and description -->
+                    <div class="topic-label-box"><%= latestPosts[i].topic%></div>
+                    <div class="outer-box">
+                        <h1><%= latestPosts[i].title%> </h1>
+                        <p1>by <%= latestPosts[i].creator%> </p1> <br><br>
+                        <div class="main-content"><%= latestPosts[i].content%></div>
+                    </div>
+                <% } %>
+            </div>
         </main>
     </body>
 

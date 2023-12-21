@@ -7,15 +7,28 @@
 
 <body>
 
-    <a href= "/"><h1><%=forumName%> <p1>!</p1> <h3>Forum website</h3></h1> </a>
+    <h1 class="page-logo">
+        <a href= "/"><%=forumName%>
+            <p>!</p>
+            <h2>Forum website</h2>
+        </a>
+    </h1>
 
-    <h2>Here are all the posts that match the <%=searchTerm%> on <%=forumName%> <p1>!</p1> Users</h2>
+    <h2 class="page-title"> Here are all the posts that match the <%=searchTerm%> on <%=forumName%> <p>!</p></h2>
 
-    <ul>
-        <% for(let i = 0; i < posts.length; i++) { %>
-            <li><%= posts[i].title %>, <%=posts[i].content %> </li>
-        <% } %>
-    </ul>
+    <main>
+        <div class="posts-container">
+            <% for (let i = 0; i < posts.length; i++) { %>
+                <!-- Display list of all post containing the search result-->
+                <div class="topic-label-box"><%= posts[i].topic%></div>
+                <div class="outer-box">
+                    <h1><%= posts[i].title%> </h1>
+                    <p1>by <%= posts[i].creator%> </p1> <br><br>
+                    <div class="main-content"><%= posts[i].content%></div>
+                </div>
+            <% } %>
+        </div>
+    </main>
 
 </body>
 

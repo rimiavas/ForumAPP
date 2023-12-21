@@ -1,6 +1,7 @@
 /* General page defaults */
+
 body {
-    background-color: #e4e4ca; 
+    background-color:  #e4e4ca ; 
 }
 
 main {
@@ -18,11 +19,14 @@ main {
 .page-title {
     font-size: 30px;
     text-align: center;
+    margin: 150px auto 20px; /* Add top margin to start below fixed elements */
+    padding: 20px;
 }
 
 .page-title p {
     color: rgb(201, 153, 108);
     display: inline;
+
 }
 
 .standard-text {
@@ -42,6 +46,14 @@ li {
     font-size: 50px;
     text-align: center;
     margin-block-end: 1px;
+    margin-block-start: 1px;
+    padding-top: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #e4e4ca;
+    z-index: 1000;
 }
 
 /* crack it "!" to make the color gold*/
@@ -68,6 +80,12 @@ li {
 nav {
     background-color: rgb(226, 216, 194);
     text-align: center;
+    position: fixed;
+    top: 125px; /* Adjust as needed */
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
 }
 
 nav ul {
@@ -76,7 +94,8 @@ nav ul {
     padding: 0;
     display: flex;
     justify-content: center;
-    font-size: 25px;  
+    font-size: 25px;
+    
 }
 
 nav li {
@@ -287,5 +306,12 @@ footer p {
     max-width: 800px;
     margin: 0 auto;
     text-align: center; /* Center the content horizontally */
+    padding: 20px;
+}
+
+.latest-post-container {
+    max-width: 800px;
+    text-align: left; /* Center the content horizontally */
+    margin: 170px auto 20px; /* Add top margin to start below fixed elements */
     padding: 20px;
 }
